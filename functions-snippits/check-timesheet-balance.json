@@ -1,0 +1,14 @@
+{
+  "name": "check_timesheet_balance",
+  "description": "Retrieves the user's current balance, in hours, of their timesheet for the current week.",
+  "parameters": {
+    "type": "object",
+    "properties": {
+      "email": {
+        "type": "string",
+        "description": "The email address of the user making the request."
+      }
+    },
+    "required": ["email"]
+  }
+}
