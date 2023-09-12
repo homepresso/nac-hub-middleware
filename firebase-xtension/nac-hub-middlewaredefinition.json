@@ -84,19 +84,7 @@
         ],
         "responses": {
           "200": {
-            "description": "Successful operation",
-            "schema": {
-              "type": "object",
-              "properties": {
-                "AssignedTo": { "type": "string" },
-                "ETA": { "type": "number" },
-                "Start Date": { "type": "string", "format": "date-time" },
-                "GUID": { "type": "string" },
-                "Stage": { "type": "string" },
-                "Title": { "type": "string" },
-                "Due Date": { "type": "string", "format": "date-time" }
-              }
-            }
+            "description": "Successful operation"
           },
           "400": {
             "description": "Bad Request"
@@ -128,11 +116,11 @@
               "type": "object",
               "properties": {
                 "AssignedTo": { "type": "string" },
-                "DueDate": { "type": "string", "format": "date-time" },
+                "Due Date": { "type": "string", "format": "date-time" },
                 "ETA": { "type": "number" },
                 "GUID": { "type": "string" },
                 "Stage": { "type": "string" },
-                "StartDate": { "type": "string", "format": "date-time" },
+                "Start Date": { "type": "string", "format": "date-time" },
                 "Title": { "type": "string" }
               }
             }
