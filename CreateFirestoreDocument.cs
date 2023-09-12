@@ -9,15 +9,27 @@ using System.Collections.Generic;
 using Newtonsoft.Json;
 using System.Threading.Tasks;
 using System.IO;
+using System.Net.Http;
+using Google.Cloud.Firestore.V1;
 
 namespace Nintex.Team7
 {
     public static class CreateFirestoreDocument
     {
-        public static void InitializeFirebaseAdminMethod()
+        public static async Task<FirestoreDb> Initialize()
         {
-            // Call the initialization method from your custom class.
-            InitializeFirebaseAdminSDK.Initialize();
+            string jsonKeyFilePath = "https://raysxtensionblobs.blob.core.windows.net/newcontainer/nacstatushub-firebase-adminsdk-cqqpu-0a9771e250.json";
+            var jsonString = string.Empty;
+            using (HttpClient client = new HttpClient())
+            {
+                jsonString = await client.GetStringAsync(jsonKeyFilePath);
+            }
+
+            var builder = new FirestoreClientBuilder { JsonCredentials = jsonString };
+
+            // Initialize Firestore database.
+            return FirestoreDb.Create("nacstatushub", builder.Build()); // Replace with your project ID.
+
         }
 
         [FunctionName("CreateFirestoreDocument")]
@@ -26,10 +38,7 @@ namespace Nintex.Team7
             string collection,
             ILogger log)
         {
-            InitializeFirebaseAdminMethod();
-            // Create a Firestore client
-            FirestoreDb db = FirestoreDb.Create("nacstatushub");
-
+            var db = await Initialize();
             try
             {
                 // Read the request body

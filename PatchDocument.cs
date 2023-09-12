@@ -9,13 +9,31 @@ using Microsoft.Extensions.Logging;
 using Google.Cloud.Firestore;
 using Newtonsoft.Json;
 using System.Collections.Generic;
+using System.Net.Http;
+using Google.Cloud.Firestore.V1;
 
 namespace Nintex.Team7
 {
     public static class PatchFirestoreDocumentFunction
     {
+        public static async Task<FirestoreDb> Initialize()
+        {
+            string jsonKeyFilePath = "https://raysxtensionblobs.blob.core.windows.net/newcontainer/nacstatushub-firebase-adminsdk-cqqpu-0a9771e250.json";
+            var jsonString = string.Empty;
+            using (HttpClient client = new HttpClient())
+            {
+                jsonString = await client.GetStringAsync(jsonKeyFilePath);
+            }
+
+            var builder = new FirestoreClientBuilder { JsonCredentials = jsonString };
+
+            // Initialize Firestore database.
+            return FirestoreDb.Create("nacstatushub", builder.Build()); // Replace with your project ID.
+
+        }
+
         [FunctionName("PatchFirestoreDocument")]
-            public static async Task<IActionResult> Run(
+        public static async Task<IActionResult> Run(
             [HttpTrigger(AuthorizationLevel.Function, "patch", Route = "collections/{collection}/documents/{documentId}")] HttpRequest req,
             string collection,
             string documentId,
@@ -35,11 +53,9 @@ namespace Nintex.Team7
             {
                 return new BadRequestObjectResult("JSON data with fields to update is required in the request body.");
             }
-            // Initialize Firebase Admin SDK
-            InitializeFirebaseAdminSDK.Initialize();
-
+        
             // Create a Firestore client
-            FirestoreDb db = FirestoreDb.Create("nacstatushub");
+            FirestoreDb db = await Initialize();
 
             // Reference to the document to be patched
             DocumentReference docRef = db.Collection(collection).Document(documentId);
