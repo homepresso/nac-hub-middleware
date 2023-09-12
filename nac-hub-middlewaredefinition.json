@@ -1,0 +1,222 @@
+{
+    "swagger": "2.0",
+    "info": {
+      "version": "1.0.0",
+      "title": "Firestore Functions API"
+    },
+    "basePath": "nachub7.azurewebsites.net/api",
+    "schemes": ["https"],
+    "paths": {
+      "/collections/{collection}/documents/{document}": {
+        "get": {
+          "summary": "Retrieve Firestore Document",
+          "parameters": [
+            {
+              "name": "collection",
+              "in": "path",
+              "required": true,
+              "type": "string",
+              "description": "The name of the Firestore collection."
+            },
+            {
+              "name": "document",
+              "in": "path",
+              "required": true,
+              "type": "string",
+              "description": "The ID of the Firestore document."
+            }
+          ],
+          "responses": {
+            "200": {
+              "description": "Successful response",
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "AssignedTo": {
+                    "type": "string"
+                  },
+                  "ETA": {
+                    "type": "integer"
+                  },
+                  "Start Date": {
+                    "type": "string"
+                  },
+                  "GUID": {
+                    "type": "string"
+                  },
+                  "Stage": {
+                    "type": "string"
+                  },
+                  "Title": {
+                    "type": "string"
+                  },
+                  "Due Date": {
+                    "type": "string"
+                  }
+                }
+              }
+            }
+          }          
+        },
+        "/collections/{collection}/documents/{documentId}": {
+            "summary": "Update Firestore Document",
+            "parameters": [
+              {
+                "name": "collection",
+                "in": "path",
+                "required": true,
+                "type": "string",
+                "description": "The name of the Firestore collection."
+              },
+              {
+                "name": "documentId",
+                "in": "path",
+                "required": true,
+                "type": "string",
+                "description": "The ID of the Firestore document."
+              }
+            ],
+            "requestBody": {
+                  "description": "Data to update the Firestore document",
+                  "required": true,
+                  "content": {
+                    "application/json": {
+                      "schema": {
+                        "type": "object",
+                        "properties": {
+                          "AssignedTo": {
+                            "type": "string"
+                          },
+                          "DueDate": {
+                            "type": "string",
+                            "format": "date-time"
+                          },
+                          "ETA": {
+                            "type": "integer"
+                          },
+                          "GUID": {
+                            "type": "string"
+                          },
+                          "Stage": {
+                            "type": "string"
+                          },
+                          "StartDate": {
+                            "type": "string",
+                            "format": "date-time"
+                          },
+                          "Title": {
+                            "type": "string"
+                          }
+                        }
+                      }
+                    }
+                  }
+                },
+                "responses": {
+                  "200": {
+                    "description": "Successful operation",
+                    "content": {
+                      "application/json": {
+                        "example": {
+                          "message": "Document updated successfully"
+                        }
+                      }
+                    }
+                  },
+                  "400": {
+                    "description": "Bad Request",
+                    "content": {
+                      "application/json": {
+                        "example": {
+                          "message": "Invalid data provided"
+                        }
+                      }
+                    }
+                  },
+                  "404": {
+                    "description": "Not Found",
+                    "content": {
+                      "application/json": {
+                        "example": {
+                          "message": "Document not found"
+                        }
+                      }
+                    }
+                  },
+                  "500": {
+                    "description": "Internal Server Error",
+                    "content": {
+                      "application/json": {
+                        "example": {
+                          "message": "Internal server error occurred"
+                        }
+                      }
+                    }
+                  }
+                }
+              },
+      "/collections/{collection}": {
+        "post": {
+          "summary": "Create Firestore Document",
+          "parameters": [
+            {
+              "name": "collection",
+              "in": "path",
+              "required": true,
+              "type": "string",
+              "description": "The name of the Firestore collection."
+            }
+          ],
+          "requestBody": {
+            "description": "Data to create a new Firestore document",
+            "required": true,
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "AssignedTo": {
+                      "type": "string"
+                    },
+                    "DueDate": {
+                      "type": "string",
+                      "format": "date-time"
+                    },
+                    "ETA": {
+                      "type": "integer"
+                    },
+                    "GUID": {
+                      "type": "string"
+                    },
+                    "Stage": {
+                      "type": "string"
+                    },
+                    "StartDate": {
+                      "type": "string",
+                      "format": "date-time"
+                    },
+                    "Title": {
+                      "type": "string"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "responses": {
+            "200": {
+              "description": "Successful response",
+              "content": {
+                "application/json": {
+                  "example": {
+                    "documentID": "lUx3x8JjJlGKUAUnCVG8"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}
