@@ -37,7 +37,7 @@
               "type": "object",
               "properties": {
                 "AssignedTo": { "type": "string" },
-                "ETA": { "type": "integer" },
+                "ETA": { "type": "number" },
                 "Start Date": { "type": "string", "format": "date-time" },
                 "GUID": { "type": "string" },
                 "Stage": { "type": "string" },
@@ -72,7 +72,7 @@
               "type": "object",
               "properties": {
                 "AssignedTo": { "type": "string" },
-                "ETA": { "type": "integer" },
+                "ETA": { "type": "number" },
                 "Start Date": { "type": "string", "format": "date-time" },
                 "GUID": { "type": "string" },
                 "Stage": { "type": "string" },
@@ -89,7 +89,7 @@
               "type": "object",
               "properties": {
                 "AssignedTo": { "type": "string" },
-                "ETA": { "type": "integer" },
+                "ETA": { "type": "number" },
                 "Start Date": { "type": "string", "format": "date-time" },
                 "GUID": { "type": "string" },
                 "Stage": { "type": "string" },
@@ -129,7 +129,7 @@
               "properties": {
                 "AssignedTo": { "type": "string" },
                 "DueDate": { "type": "string", "format": "date-time" },
-                "ETA": { "type": "integer" },
+                "ETA": { "type": "number" },
                 "GUID": { "type": "string" },
                 "Stage": { "type": "string" },
                 "StartDate": { "type": "string", "format": "date-time" },
