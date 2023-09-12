@@ -9,7 +9,6 @@ using System.Collections.Generic;
 using Newtonsoft.Json;
 using System.Threading.Tasks;
 using System.IO;
-using System.Net;
 using System.Net.Http;
 using Google.Cloud.Firestore.V1;
 
@@ -18,23 +17,24 @@ namespace Nintex.Team7
     public static class CreateFirestoreDocument
     {
         public static async Task<FirestoreDb> Initialize()
-    {
-        string jsonKeyFilePath = "https://raysxtensionblobs.blob.core.windows.net/newcontainer/nacstatushub-firebase-adminsdk-cqqpu-0a9771e250.json";
-        var jsonString = string.Empty;
-        using(HttpClient  client = new HttpClient()) {
-           jsonString = await client.GetStringAsync(jsonKeyFilePath);
-        }       
-        
-        var builder = new FirestoreClientBuilder {JsonCredentials = jsonString};
-       
-        // Set the GOOGLE_APPLICATION_CREDENTIALS environment variable.
-        Environment.SetEnvironmentVariable("GOOGLE_APPLICATION_CREDENTIALS", jsonKeyFilePath);
+        {
+            string jsonKeyFilePath = "https://raysxtensionblobs.blob.core.windows.net/newcontainer/nacstatushub-firebase-adminsdk-cqqpu-0a9771e250.json";
+            var jsonString = string.Empty;
+            using (HttpClient client = new HttpClient())
+            {
+                jsonString = await client.GetStringAsync(jsonKeyFilePath);
+            }
 
-        // Initialize Firestore database.
-        return FirestoreDb.Create("nacstatushub", builder.Build()); // Replace with your project ID.
-        
-        // You can now use 'db' to interact with Firestore.
-    }
+            var builder = new FirestoreClientBuilder { JsonCredentials = jsonString };
+
+            // Set the GOOGLE_APPLICATION_CREDENTIALS environment variable.
+            Environment.SetEnvironmentVariable("GOOGLE_APPLICATION_CREDENTIALS", jsonKeyFilePath);
+
+            // Initialize Firestore database.
+            return FirestoreDb.Create("nacstatushub", builder.Build()); // Replace with your project ID.
+
+            // You can now use 'db' to interact with Firestore.
+        }
 
         [FunctionName("CreateFirestoreDocument")]
         public static async Task<IActionResult> Run(
@@ -43,7 +43,6 @@ namespace Nintex.Team7
             ILogger log)
         {
             var db = await Initialize();
-         
             try
             {
                 // Read the request body

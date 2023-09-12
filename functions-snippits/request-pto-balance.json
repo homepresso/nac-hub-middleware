@@ -1,0 +1,14 @@
+{
+  "name": "request_pto_balance",
+  "description": "Retrieves the user's current balance, in hours, of time off they have remaining by type.",
+  "parameters": {
+    "type": "object",
+    "properties": {
+      "email": {
+        "type": "string",
+        "description": "The email address of the user making the request."
+      }
+    },
+    "required": ["email"]
+  }
+}

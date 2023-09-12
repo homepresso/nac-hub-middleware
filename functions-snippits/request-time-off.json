@@ -1,0 +1,30 @@
+{
+  "name": "request_time_off",
+  "description": "Makes a request on behalf of the user to ask for time off for a set period. If any data is missing, it should be requested from the user.",
+  "parameters": {
+    "type": "object",
+    "properties": {
+      "startDate": {
+        "type": "string",
+        "description": "The date the time off will begin."
+      },
+      "endDate": {
+        "type": "string",
+        "description": "The date the time off will end."
+      },
+      "typeOfPto": {
+        "type": "string",
+        "description": "The category of time off they would like to use for this request. (i.e. PTO, Sick, Bereavement)"
+      },
+      "numHours": {
+        "type": "integer",
+        "description": "The amount of hours this request will consume from their total allocation. This can be calculated from the startDate and endDate parameters."
+      },
+      "email": {
+        "type": "string",
+        "description": "The email address of the user making the request."
+      }
+    },
+    "required": ["startDate", "endDate", "typeOfPto", "email"]
+  }
+}

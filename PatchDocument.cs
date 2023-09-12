@@ -9,27 +9,31 @@ using Microsoft.Extensions.Logging;
 using Google.Cloud.Firestore;
 using Newtonsoft.Json;
 using System.Collections.Generic;
+using System.Net.Http;
+using Google.Cloud.Firestore.V1;
 
 namespace Nintex.Team7
 {
     public static class PatchFirestoreDocumentFunction
     {
-        public static void Initialize()
-    {
-        // Replace 'YOUR_JSON_KEY_FILE_PATH.json' with the actual path to your JSON key file.
-        string jsonKeyFilePath = "https://raysxtensionblobs.blob.core.windows.net/newcontainer/nacstatushub-firebase-adminsdk-cqqpu-0a9771e250.json";
+        public static async Task<FirestoreDb> Initialize()
+        {
+            string jsonKeyFilePath = "https://raysxtensionblobs.blob.core.windows.net/newcontainer/nacstatushub-firebase-adminsdk-cqqpu-0a9771e250.json";
+            var jsonString = string.Empty;
+            using (HttpClient client = new HttpClient())
+            {
+                jsonString = await client.GetStringAsync(jsonKeyFilePath);
+            }
 
-        // Set the GOOGLE_APPLICATION_CREDENTIALS environment variable.
-        Environment.SetEnvironmentVariable("GOOGLE_APPLICATION_CREDENTIALS", jsonKeyFilePath);
+            var builder = new FirestoreClientBuilder { JsonCredentials = jsonString };
 
-        // Initialize Firestore database.
-        FirestoreDb db = FirestoreDb.Create("nacstatushub"); // Replace with your project ID.
-        
-        // You can now use 'db' to interact with Firestore.
-    }
+            // Initialize Firestore database.
+            return FirestoreDb.Create("nacstatushub", builder.Build()); // Replace with your project ID.
+
+        }
 
         [FunctionName("PatchFirestoreDocument")]
-            public static async Task<IActionResult> Run(
+        public static async Task<IActionResult> Run(
             [HttpTrigger(AuthorizationLevel.Function, "patch", Route = "collections/{collection}/documents/{documentId}")] HttpRequest req,
             string collection,
             string documentId,
@@ -53,7 +57,7 @@ namespace Nintex.Team7
             Initialize();
 
             // Create a Firestore client
-            FirestoreDb db = FirestoreDb.Create("nacstatushub");
+            FirestoreDb db = await Initialize();
 
             // Reference to the document to be patched
             DocumentReference docRef = db.Collection(collection).Document(documentId);

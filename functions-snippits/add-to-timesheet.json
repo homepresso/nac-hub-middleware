@@ -1,0 +1,18 @@
+{
+  "name": "add_to_timesheet",
+  "description": "Adds the specified number of hours to the user's timesheet for today.",
+  "parameters": {
+    "type": "object",
+    "properties": {
+      "email": {
+        "type": "string",
+        "description": "The email address of the user making the request."
+      },
+      "numberOfHours": {
+        "type": "integer",
+        "description": "The number of hours to add to the user's timesheet for the current day."
+      }
+    },
+    "required": ["email", "numberOfHours"]
+  }
+}
