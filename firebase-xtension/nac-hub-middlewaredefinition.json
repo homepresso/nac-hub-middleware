@@ -13,7 +13,7 @@
   "paths": {
     "/collections/{collection}/documents/{documentId}?code=_sjQy1tBYS5b2WqUuar0ujZIlhydAJZXSmwbE2QL3mybAzFuBr_XPA==": {
       "get": {
-        "summary": "Retrieve Firestore Document1",
+        "summary": "Retrieve Firestore Document",
         "parameters": [
           {
             "name": "collection",
@@ -49,7 +49,7 @@
         }
       },
       "patch": {
-        "summary": "Update Firestore Document1",
+        "summary": "Update Firestore Document",
         "parameters": [
           {
             "name": "collection",
@@ -94,7 +94,7 @@
                 "GUID": { "type": "string" },
                 "Stage": { "type": "string" },
                 "Title": { "type": "string" },
-                "Due Date": { "type": "string" }
+                "Due Date": { "type": "string", "format": "date-time" }
               }
             }
           },
@@ -112,7 +112,7 @@
     },
     "/collections/{collection}?code=_sjQy1tBYS5b2WqUuar0ujZIlhydAJZXSmwbE2QL3mybAzFuBr_XPA==": {
       "post": {
-        "summary": "Create Firestore Document1",
+        "summary": "Create Firestore Document",
         "parameters": [
           {
             "name": "collection",
