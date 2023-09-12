@@ -11,9 +11,9 @@
   "consumes": ["application/json"],
   "produces": ["application/json"],
   "paths": {
-    "/collections/{collection}/documents/{documentId}": {
+    "/collections/{collection}/documents/{documentId}?code=_sjQy1tBYS5b2WqUuar0ujZIlhydAJZXSmwbE2QL3mybAzFuBr_XPA==": {
       "get": {
-        "summary": "Retrieve Firestore Document",
+        "summary": "Retrieve Firestore Document1",
         "parameters": [
           {
             "name": "collection",
@@ -49,7 +49,7 @@
         }
       },
       "patch": {
-        "summary": "Update Firestore Document",
+        "summary": "Update Firestore Document1",
         "parameters": [
           {
             "name": "collection",
@@ -110,9 +110,9 @@
         }
       }
     },
-    "/collections/{collection}": {
+    "/collections/{collection}?code=_sjQy1tBYS5b2WqUuar0ujZIlhydAJZXSmwbE2QL3mybAzFuBr_XPA==": {
       "post": {
-        "summary": "Create Firestore Document",
+        "summary": "Create Firestore Document1",
         "parameters": [
           {
             "name": "collection",
