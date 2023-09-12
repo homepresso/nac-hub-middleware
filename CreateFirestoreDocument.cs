@@ -27,13 +27,9 @@ namespace Nintex.Team7
 
             var builder = new FirestoreClientBuilder { JsonCredentials = jsonString };
 
-            // Set the GOOGLE_APPLICATION_CREDENTIALS environment variable.
-            Environment.SetEnvironmentVariable("GOOGLE_APPLICATION_CREDENTIALS", jsonKeyFilePath);
-
             // Initialize Firestore database.
             return FirestoreDb.Create("nacstatushub", builder.Build()); // Replace with your project ID.
 
-            // You can now use 'db' to interact with Firestore.
         }
 
         [FunctionName("CreateFirestoreDocument")]
