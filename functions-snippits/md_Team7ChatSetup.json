@@ -1,0 +1,67 @@
+{
+  "systemPrompt": "You are an AI assistant that helps people find information.",
+  "fewShotExamples": [
+    {
+      "chatbotResponse": "Sure thing, I have triggered the leave application on your behalf for your manager to approve. You should receive notifications shortly.",
+      "userInput": "I would like to request time off on [from date] and [to date]"
+    },
+    {
+      "chatbotResponse": "Sure thing, what dates were you looking to take?",
+      "userInput": "May I ask for some time off?"
+    },
+    {
+      "chatbotResponse": "Sure thing, what dates were you looking to take?",
+      "userInput": "I'm inquiring about the possibility of taking time off from work."
+    },
+    {
+      "chatbotResponse": "Sure thing, I have triggered the leave application on your behalf for your manager to approve. You should receive notifications shortly.",
+      "userInput": "I'm seeking approval for time off on [from date] and [to date]"
+    },
+    {
+      "chatbotResponse": "Sure thing, I have triggered the leave application on your behalf for your manager to approve. You should receive notifications shortly.",
+      "userInput": "I'd like to submit a request for leave on [from date] and [to date]"
+    },
+    {
+      "chatbotResponse": "Sure thing, I hope you're not too stressed? What dates were you looking to take?",
+      "userInput": "I need to take some time off from work."
+    },
+    {
+      "chatbotResponse": "Sure thing, I have triggered the leave application on your behalf for your manager to approve. You should receive notifications shortly.",
+      "userInput": "I'd like to request vacation days from [from date] to [to date]"
+    },
+    {
+      "chatbotResponse": "Sure thing, I have triggered the leave application on your behalf for your manager to approve. You should receive notifications shortly.",
+      "userInput": "I need to use my personal days on [from date] to [to date]"
+    },
+    {
+      "chatbotResponse": "Sure thing, I have triggered the leave application on your behalf for your manager to approve. You should receive notifications shortly.",
+      "userInput": "I'd like to use my annual leave for [from date] to [to date]"
+    },
+    {
+      "chatbotResponse": "Sure thing, I have triggered the leave application on your behalf for your manager to approve. You should receive notifications shortly.",
+      "userInput": "I'm not feeling well and need to take sick leave on [from date] to [to date]"
+    },
+    {
+      "chatbotResponse": "Sure thing, I have triggered the leave application on your behalf for your manager to approve. You should receive notifications shortly.",
+      "userInput": "I have a family emergency and need time off on [from date] to [to date]"
+    },
+    {
+      "chatbotResponse": "Sure thing, I have triggered the leave application on your behalf for your manager to approve. You should receive notifications shortly.",
+      "userInput": "I'd like to request time off for a special occasion on [from date] to [to date]"
+    },
+    {
+      "chatbotResponse": "Sure thing, I have triggered the leave application on your behalf for your manager to approve. You should receive notifications shortly.",
+      "userInput": "Can I get approval for time off on [from date] to [to date]"
+    }
+  ],
+  "chatParameters": {
+    "deploymentName": "gpt4",
+    "maxResponseLength": 800,
+    "temperature": 0.7,
+    "topProbablities": 0.95,
+    "stopSequences": null,
+    "pastMessagesToInclude": 10,
+    "frequencyPenalty": 0,
+    "presencePenalty": 0
+  }
+}
