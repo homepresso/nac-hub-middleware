@@ -11,7 +11,7 @@
   "consumes": ["application/json"],
   "produces": ["application/json"],
   "paths": {
-    "/collections/{collection}/documents/{document}": {
+    "/collections/{collection}/documents/{documentId}": {
       "get": {
         "summary": "Retrieve Firestore Document",
         "parameters": [
@@ -23,7 +23,7 @@
             "description": "The name of the Firestore collection."
           },
           {
-            "name": "document",
+            "name": "documentId",
             "in": "path",
             "required": true,
             "type": "string",
@@ -33,6 +33,58 @@
         "responses": {
           "200": {
             "description": "Successful response",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "AssignedTo": { "type": "string" },
+                "ETA": { "type": "integer" },
+                "Start Date": { "type": "string" },
+                "GUID": { "type": "string" },
+                "Stage": { "type": "string" },
+                "Title": { "type": "string" },
+                "Due Date": { "type": "string" }
+              }
+            }
+          }
+        }
+      },
+      "patch": {
+        "summary": "Update Firestore Document",
+        "parameters": [
+          {
+            "name": "collection",
+            "in": "path",
+            "required": true,
+            "type": "string",
+            "description": "The name of the Firestore collection."
+          },
+          {
+            "name": "documentId",
+            "in": "path",
+            "required": true,
+            "type": "string",
+            "description": "The ID of the Firestore document."
+          },
+          {
+            "name": "requestBody",
+            "in": "body",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "AssignedTo": { "type": "string" },
+                "ETA": { "type": "integer" },
+                "Start Date": { "type": "string" },
+                "GUID": { "type": "string" },
+                "Stage": { "type": "string" },
+                "Title": { "type": "string" },
+                "Due Date": { "type": "string" }
+              }
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful operation",
             "schema": {
               "type": "object",
               "properties": {
@@ -59,105 +111,15 @@
                 }
               }
             }
-          }
-        }
-      }
-    },
-    "/collections/{collection}/documents/{documentId}": {
-      "patch": {
-        "summary": "Update Firestore Document",
-        "parameters": [
-          {
-            "name": "collection",
-            "in": "path",
-            "required": true,
-            "type": "string",
-            "description": "The name of the Firestore collection."
-          },
-          {
-            "name": "documentId",
-            "in": "path",
-            "required": true,
-            "type": "string",
-            "description": "The ID of the Firestore document."
-          }
-        ],
-        "requestBody": {
-          "description": "Data to update the Firestore document",
-          "required": true,
-          "content": {
-            "application/json": {
-              "schema": {
-                "type": "object",
-                "properties": {
-                  "AssignedTo": {
-                    "type": "string"
-                  },
-                  "DueDate": {
-                    "type": "string",
-                    "format": "date-time"
-                  },
-                  "ETA": {
-                    "type": "integer"
-                  },
-                  "GUID": {
-                    "type": "string"
-                  },
-                  "Stage": {
-                    "type": "string"
-                  },
-                  "StartDate": {
-                    "type": "string",
-                    "format": "date-time"
-                  },
-                  "Title": {
-                    "type": "string"
-                  }
-                }
-              }
-            }
-          }
-        },
-        "responses": {
-          "200": {
-            "description": "Successful operation",
-            "content": {
-              "application/json": {
-                "example": {
-                  "message": "Document updated successfully"
-                }
-              }
-            }
           },
           "400": {
-            "description": "Bad Request",
-            "content": {
-              "application/json": {
-                "example": {
-                  "message": "Invalid data provided"
-                }
-              }
-            }
+            "description": "Bad Request"
           },
           "404": {
-            "description": "Not Found",
-            "content": {
-              "application/json": {
-                "example": {
-                  "message": "Document not found"
-                }
-              }
-            }
+            "description": "Not Found"
           },
           "500": {
-            "description": "Internal Server Error",
-            "content": {
-              "application/json": {
-                "example": {
-                  "message": "Internal server error occurred"
-                }
-              }
-            }
+            "description": "Internal Server Error"
           }
         }
       }
@@ -172,57 +134,53 @@
             "required": true,
             "type": "string",
             "description": "The name of the Firestore collection."
-          }
-        ],
-        "requestBody": {
-          "description": "Data to create a new Firestore document",
-          "required": true,
-          "content": {
-            "application/json": {
-              "schema": {
-                "type": "object",
-                "properties": {
-                  "AssignedTo": {
-                    "type": "string"
-                  },
-                  "DueDate": {
-                    "type": "string",
-                    "format": "date-time"
-                  },
-                  "ETA": {
-                    "type": "integer"
-                  },
-                  "GUID": {
-                    "type": "string"
-                  },
-                  "Stage": {
-                    "type": "string"
-                  },
-                  "StartDate": {
-                    "type": "string",
-                    "format": "date-time"
-                  },
-                  "Title": {
-                    "type": "string"
-                  }
+          },
+          {
+            "name": "requestBody",
+            "in": "body",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "AssignedTo": {
+                  "type": "string"
+                },
+                "DueDate": {
+                  "type": "string",
+                  "format": "date-time"
+                },
+                "ETA": {
+                  "type": "integer"
+                },
+                "GUID": {
+                  "type": "string"
+                },
+                "Stage": {
+                  "type": "string"
+                },
+                "StartDate": {
+                  "type": "string",
+                  "format": "date-time"
+                },
+                "Title": {
+                  "type": "string"
                 }
               }
             }
           }
-        },
+        ],
         "responses": {
           "200": {
             "description": "Successful response",
-            "content": {
-              "application/json": {
-                "example": {
-                  "documentID": "lUx3x8JjJlGKUAUnCVG8"
-                }
+            "schema": {
+              "type": "object",
+              "properties": {
+                "documentID": { "type": "string" }
               }
             }
           }
         }
       }
     }
-  }
+  },
+  "definitions": {}
 }
