@@ -53,9 +53,7 @@ namespace Nintex.Team7
             {
                 return new BadRequestObjectResult("JSON data with fields to update is required in the request body.");
             }
-            // Initialize Firebase Admin SDK
-            Initialize();
-
+        
             // Create a Firestore client
             FirestoreDb db = await Initialize();
 
