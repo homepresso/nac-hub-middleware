@@ -10,6 +10,7 @@
     <PackageReference Include="Google.Cloud.Firestore" Version="3.3.0" />
     <PackageReference Include="Google.Cloud.Firestore.V1" Version="3.3.0" />
     <PackageReference Include="Google.Cloud.Firestore.Admin.V1" Version="3.3.0" />
+    <PackageReference Include="Google.Cloud.Storage.V1" Version="4.6.0" />
   </ItemGroup>
   <ItemGroup>
     <None Update="host.json">

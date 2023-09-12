@@ -14,6 +14,20 @@ namespace Nintex.Team7
 {
     public static class PatchFirestoreDocumentFunction
     {
+        public static void Initialize()
+    {
+        // Replace 'YOUR_JSON_KEY_FILE_PATH.json' with the actual path to your JSON key file.
+        string jsonKeyFilePath = "https://raysxtensionblobs.blob.core.windows.net/newcontainer/nacstatushub-firebase-adminsdk-cqqpu-0a9771e250.json";
+
+        // Set the GOOGLE_APPLICATION_CREDENTIALS environment variable.
+        Environment.SetEnvironmentVariable("GOOGLE_APPLICATION_CREDENTIALS", jsonKeyFilePath);
+
+        // Initialize Firestore database.
+        FirestoreDb db = FirestoreDb.Create("nacstatushub"); // Replace with your project ID.
+        
+        // You can now use 'db' to interact with Firestore.
+    }
+
         [FunctionName("PatchFirestoreDocument")]
             public static async Task<IActionResult> Run(
             [HttpTrigger(AuthorizationLevel.Function, "patch", Route = "collections/{collection}/documents/{documentId}")] HttpRequest req,
@@ -36,7 +50,7 @@ namespace Nintex.Team7
                 return new BadRequestObjectResult("JSON data with fields to update is required in the request body.");
             }
             // Initialize Firebase Admin SDK
-            InitializeFirebaseAdminSDK.Initialize();
+            Initialize();
 
             // Create a Firestore client
             FirestoreDb db = FirestoreDb.Create("nacstatushub");
