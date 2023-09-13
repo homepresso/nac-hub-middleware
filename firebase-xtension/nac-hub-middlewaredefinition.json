@@ -48,7 +48,8 @@
             "in": "path",
             "required": true,
             "type": "string",
-            "description": "The name of the Firestore collection."
+            "description": "The name of the Firestore collection.",
+            "default": "WorkflowStatus"
           },
           {
             "name": "documentId",
@@ -63,13 +64,13 @@
             "schema": {
               "type": "object",
               "properties": {
-                "AssignedTo": { "type": "string" },
-                "ETA": { "type": "number" },
+                "CurrentTaskAssignedTo": { "type": "string" },
                 "Start Date": { "type": "string", "format": "date-time" },
-                "GUID": { "type": "string" },
-                "Stage": { "type": "string" },
+                "End Date": { "type": "string", "format": "date-time" },
+                "WorkflowGUID": { "type": "string" },
+                "Status": { "type": "string" },
                 "Title": { "type": "string" },
-                "Due Date": { "type": "string", "format": "date-time" }
+                "User": { "type": "string" }
               }
             }
           }
@@ -99,13 +100,13 @@
             "schema": {
               "type": "object",
               "properties": {
-                "AssignedTo": { "type": "string" },
-                "Due Date": { "type": "string", "format": "date-time" },
-                "ETA": { "type": "number" },
-                "GUID": { "type": "string" },
-                "Stage": { "type": "string" },
+                "CurrentTaskAssignedTo": { "type": "string" },
                 "Start Date": { "type": "string", "format": "date-time" },
-                "Title": { "type": "string" }
+                "End Date": { "type": "string", "format": "date-time" },
+                "WorkflowGUID": { "type": "string" },
+                "Status": { "type": "string" },
+                "Title": { "type": "string" },
+                "User": { "type": "string" }
               }
             }
           }
