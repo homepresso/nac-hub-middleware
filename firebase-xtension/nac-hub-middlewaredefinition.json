@@ -11,7 +11,7 @@
   "consumes": ["application/json"],
   "produces": ["application/json"],
   "paths": {
-    "/collections/{collection}/documents/{documentId}": {
+    "/collections/{collection}/documents/{documentId}?code=_sjQy1tBYS5b2WqUuar0ujZIlhydAJZXSmwbE2QL3mybAzFuBr_XPA==": {
       "get": {
         "summary": "Retrieve Firestore Document",
         "parameters": [
@@ -33,19 +33,11 @@
         "responses": {
           "200": {
             "description": "Successful response",
-            "schema": {
-              "type": "object",
-              "properties": {
-                "AssignedTo": { "type": "string" },
-                "ETA": { "type": "integer" },
-                "Start Date": { "type": "string" },
-                "GUID": { "type": "string" },
-                "Stage": { "type": "string" },
-                "Title": { "type": "string" },
-                "Due Date": { "type": "string" }
-              }
-            }
-          }
+            "schema": { "type": "string" }
+          },
+          "400": { "description": "Bad Request" },
+          "404": { "description": "Not Found" },
+          "500": { "description": "Internal Server Error" }
         }
       },
       "patch": {
@@ -56,7 +48,8 @@
             "in": "path",
             "required": true,
             "type": "string",
-            "description": "The name of the Firestore collection."
+            "description": "The name of the Firestore collection.",
+            "default": "WorkflowStatus"
           },
           {
             "name": "documentId",
@@ -71,60 +64,26 @@
             "schema": {
               "type": "object",
               "properties": {
-                "AssignedTo": { "type": "string" },
-                "ETA": { "type": "integer" },
-                "Start Date": { "type": "string" },
-                "GUID": { "type": "string" },
-                "Stage": { "type": "string" },
+                "CurrentTaskAssignedTo": { "type": "string" },
+                "Start Date": { "type": "string", "format": "date-time" },
+                "End Date": { "type": "string", "format": "date-time" },
+                "WorkflowGUID": { "type": "string" },
+                "Status": { "type": "string" },
                 "Title": { "type": "string" },
-                "Due Date": { "type": "string" }
+                "User": { "type": "string" }
               }
             }
           }
         ],
         "responses": {
-          "200": {
-            "description": "Successful operation",
-            "schema": {
-              "type": "object",
-              "properties": {
-                "AssignedTo": {
-                  "type": "string"
-                },
-                "ETA": {
-                  "type": "integer"
-                },
-                "Start Date": {
-                  "type": "string"
-                },
-                "GUID": {
-                  "type": "string"
-                },
-                "Stage": {
-                  "type": "string"
-                },
-                "Title": {
-                  "type": "string"
-                },
-                "Due Date": {
-                  "type": "string"
-                }
-              }
-            }
-          },
-          "400": {
-            "description": "Bad Request"
-          },
-          "404": {
-            "description": "Not Found"
-          },
-          "500": {
-            "description": "Internal Server Error"
-          }
+          "200": { "description": "Successful operation" },
+          "400": { "description": "Bad Request" },
+          "404": { "description": "Not Found" },
+          "500": { "description": "Internal Server Error" }
         }
       }
     },
-    "/collections/{collection}": {
+    "/collections/{collection}?code=_sjQy1tBYS5b2WqUuar0ujZIlhydAJZXSmwbE2QL3mybAzFuBr_XPA==": {
       "post": {
         "summary": "Create Firestore Document",
         "parameters": [
@@ -141,29 +100,13 @@
             "schema": {
               "type": "object",
               "properties": {
-                "AssignedTo": {
-                  "type": "string"
-                },
-                "DueDate": {
-                  "type": "string",
-                  "format": "date-time"
-                },
-                "ETA": {
-                  "type": "integer"
-                },
-                "GUID": {
-                  "type": "string"
-                },
-                "Stage": {
-                  "type": "string"
-                },
-                "StartDate": {
-                  "type": "string",
-                  "format": "date-time"
-                },
-                "Title": {
-                  "type": "string"
-                }
+                "CurrentTaskAssignedTo": { "type": "string" },
+                "Start Date": { "type": "string", "format": "date-time" },
+                "End Date": { "type": "string", "format": "date-time" },
+                "WorkflowGUID": { "type": "string" },
+                "Status": { "type": "string" },
+                "Title": { "type": "string" },
+                "User": { "type": "string" }
               }
             }
           }
@@ -171,16 +114,13 @@
         "responses": {
           "200": {
             "description": "Successful response",
-            "schema": {
-              "type": "object",
-              "properties": {
-                "documentID": { "type": "string" }
-              }
-            }
-          }
+            "schema": { "type": "string" }
+          },
+          "400": { "description": "Bad Request" },
+          "404": { "description": "Not Found" },
+          "500": { "description": "Internal Server Error" }
         }
       }
     }
-  },
-  "definitions": {}
+  }
 }
