@@ -34,16 +34,7 @@
           "200": {
             "description": "Successful response",
             "schema": {
-              "type": "object",
-              "properties": {
-                "AssignedTo": { "type": "string" },
-                "ETA": { "type": "number" },
-                "Start Date": { "type": "string", "format": "date-time" },
-                "GUID": { "type": "string" },
-                "Stage": { "type": "string" },
-                "Title": { "type": "string" },
-                "Due Date": { "type": "string", "format": "date-time" }
-              }
+              "type": "string"
             }
           }
         }
