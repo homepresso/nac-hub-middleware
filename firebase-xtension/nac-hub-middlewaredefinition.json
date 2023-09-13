@@ -33,10 +33,11 @@
         "responses": {
           "200": {
             "description": "Successful response",
-            "schema": {
-              "type": "string"
-            }
-          }
+            "schema": { "type": "string" }
+          },
+          "400": { "description": "Bad Request" },
+          "404": { "description": "Not Found" },
+          "500": { "description": "Internal Server Error" }
         }
       },
       "patch": {
@@ -112,16 +113,13 @@
         "responses": {
           "200": {
             "description": "Successful response",
-            "schema": {
-              "type": "object",
-              "properties": {
-                "documentID": { "type": "string" }
-              }
-            }
-          }
+            "schema": { "type": "string" }
+          },
+          "400": { "description": "Bad Request" },
+          "404": { "description": "Not Found" },
+          "500": { "description": "Internal Server Error" }
         }
       }
     }
-  },
-  "definitions": {}
+  }
 }
