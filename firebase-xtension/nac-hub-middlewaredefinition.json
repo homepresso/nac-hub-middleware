@@ -108,11 +108,11 @@
               "type": "object",
               "properties": {
                 "AssignedTo": { "type": "string" },
-                "DueDate": { "type": "string", "format": "date-time" },
+                "Due Date": { "type": "string", "format": "date-time" },
                 "ETA": { "type": "number" },
                 "GUID": { "type": "string" },
                 "Stage": { "type": "string" },
-                "StartDate": { "type": "string", "format": "date-time" },
+                "Start Date": { "type": "string", "format": "date-time" },
                 "Title": { "type": "string" }
               }
             }
