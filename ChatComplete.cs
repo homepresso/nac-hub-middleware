@@ -28,8 +28,9 @@ namespace Nintex.Team7
             var result = string.Empty;
             using (HttpClient openAiClient = new HttpClient())
             {
+                var openAItoken = Environment.GetEnvironmentVariable("openaitoken");
                 openAiClient.DefaultRequestHeaders.Authorization
-                         = new AuthenticationHeaderValue("Bearer", "");
+                         = new AuthenticationHeaderValue("Bearer", openAItoken);
                 var content = new StringContent(chatDetails, Encoding.UTF8, "application/json");
                 var response = await openAiClient.PostAsync("https://api.openai.com/v1/chat/completions", content);
                 if (response.StatusCode == System.Net.HttpStatusCode.OK)
